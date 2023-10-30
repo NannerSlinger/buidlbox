@@ -1,15 +1,18 @@
 {
   "name": "buidlebox-avatar-builder",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://github.com/web3senior/buidlbox",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy": "gh-pages -d dist",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "gh-pages": "^6.0.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {
