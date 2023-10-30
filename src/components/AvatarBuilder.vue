@@ -39,12 +39,18 @@ import AvatarDB from './../assets/avatar_data.json'
 
       <div class="footer__tabs">
         <ul>
-          <li><button @click="activeTab = 'body'" :class="{ active: activeTab === 'body'?true:false }">Body</button></li>
-          <li><button @click="activeTab = 'head'" :class="{ active: activeTab === 'head'?true:false }">Head</button></li>
-          <li><button @click="activeTab = 'face'" :class="{ active: activeTab === 'face'?true:false }">Face</button></li>
-          <li><button @click="activeTab = 'eyes'" :class="{ active: activeTab === 'eyes'?true:false }">Eyes</button></li>
-          <li><button @click="activeTab = 'ears'" :class="{ active: activeTab === 'ears'?true:false }">Ears</button></li>
-          <li><button @click="activeTab = 'clothes'" :class="{ active: activeTab === 'clothes'?true:false }">Clothes</button></li>
+          <li><button @click="activeTab = 'body'" :class="{ active: activeTab === 'body' ? true : false }">Body</button>
+          </li>
+          <li><button @click="activeTab = 'head'" :class="{ active: activeTab === 'head' ? true : false }">Head</button>
+          </li>
+          <li><button @click="activeTab = 'face'" :class="{ active: activeTab === 'face' ? true : false }">Face</button>
+          </li>
+          <li><button @click="activeTab = 'eyes'" :class="{ active: activeTab === 'eyes' ? true : false }">Eyes</button>
+          </li>
+          <li><button @click="activeTab = 'ears'" :class="{ active: activeTab === 'ears' ? true : false }">Ears</button>
+          </li>
+          <li><button @click="activeTab = 'clothes'"
+              :class="{ active: activeTab === 'clothes' ? true : false }">Clothes</button></li>
         </ul>
       </div>
 
