@@ -20,12 +20,12 @@ import AvatarDB from './../assets/avatar_data.json'
       <h2>Create your Buidlbox avatar</h2>
 
       <output :style="[finalAvatar.grayscale === true ? { 'filter': 'grayscale(1)' } : '']">
-        <div :style="{ '--data-url': 'url(./src/assets/avatar/body/' + finalAvatar.body + ')' }" />
-        <div :style="{ '--data-url': 'url(./src/assets/avatar/clothes/' + finalAvatar.clothes + ')' }" />
-        <div :style="{ '--data-url': 'url(./src/assets/avatar/eyes/' + finalAvatar.eyes + ')' }" />
-        <div :style="{ '--data-url': 'url(./src/assets/avatar/ears/' + finalAvatar.ears + ')' }" />
-        <div :style="{ '--data-url': 'url(./src/assets/avatar/head/' + finalAvatar.head + ')' }" />
-        <div :style="{ '--data-url': 'url(./src/assets/avatar/face/' + finalAvatar.face + ')' }" />
+        <div :style="{ '--data-url': 'url(./avatar/body/' + finalAvatar.body + ')' }" />
+        <div :style="{ '--data-url': 'url(./avatar/clothes/' + finalAvatar.clothes + ')' }" />
+        <div :style="{ '--data-url': 'url(./avatar/eyes/' + finalAvatar.eyes + ')' }" />
+        <div :style="{ '--data-url': 'url(./avatar/ears/' + finalAvatar.ears + ')' }" />
+        <div :style="{ '--data-url': 'url(./avatar/head/' + finalAvatar.head + ')' }" />
+        <div :style="{ '--data-url': 'url(./avatar/face/' + finalAvatar.face + ')' }" />
       </output>
 
       <ul>
@@ -52,37 +52,37 @@ import AvatarDB from './../assets/avatar_data.json'
         <template v-if="activeTab === 'body'">
           <div v-for="(item, index) in AvatarDB.body" :key="index"
             @click="finalAvatar.body = item; console.log(finalAvatar)"
-            :style="{ '--data-url': 'url(./src/assets/avatar/body/' + item + ')' }" />
+            :style="{ '--data-url': 'url(./avatar/body/' + item + ')' }" />
         </template>
 
         <template v-if="activeTab === 'head'">
           <div v-for="(item, index) in AvatarDB.head" :key="index"
             @click="finalAvatar.head = item; console.log(finalAvatar)"
-            :style="{ '--data-url': 'url(./src/assets/avatar/head/' + item + ')' }" />
+            :style="{ '--data-url': 'url(./avatar/head/' + item + ')' }" />
         </template>
 
         <template v-if="activeTab === 'face'">
           <div v-for="(item, index) in AvatarDB.face" :key="index"
             @click="finalAvatar.face = item; console.log(finalAvatar)"
-            :style="{ '--data-url': 'url(./src/assets/avatar/face/' + item + ')' }" />
+            :style="{ '--data-url': 'url(./avatar/face/' + item + ')' }" />
         </template>
 
         <template v-if="activeTab === 'ears'">
           <div v-for="(item, index) in AvatarDB.ears" :key="index"
             @click="finalAvatar.ears = item; console.log(finalAvatar)"
-            :style="{ '--data-url': 'url(./src/assets/avatar/ears/' + item + ')' }" />
+            :style="{ '--data-url': 'url(./avatar/ears/' + item + ')' }" />
         </template>
 
         <template v-if="activeTab === 'clothes'">
           <div v-for="(item, index) in AvatarDB.clothes" :key="index"
             @click="finalAvatar.clothes = item; console.log(finalAvatar)"
-            :style="{ '--data-url': 'url(./src/assets/avatar/clothes/' + item + ')' }" />
+            :style="{ '--data-url': 'url(./avatar/clothes/' + item + ')' }" />
         </template>
 
         <template v-if="activeTab === 'eyes'">
           <div v-for="(item, index) in AvatarDB.eyes" :key="index"
             @click="finalAvatar.eyes = item; console.log(finalAvatar)"
-            :style="{ '--data-url': 'url(./src/assets/avatar/eyes/' + item + ')' }" />
+            :style="{ '--data-url': 'url(./avatar/eyes/' + item + ')' }" />
         </template>
       </div>
 
