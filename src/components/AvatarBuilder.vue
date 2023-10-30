@@ -39,12 +39,12 @@ import AvatarDB from './../assets/avatar_data.json'
 
       <div class="footer__tabs">
         <ul>
-          <li><button @click="activeTab = 'body'" class="active">Body</button></li>
-          <li><button @click="activeTab = 'head'">Head</button></li>
-          <li><button @click="activeTab = 'face'">Face</button></li>
-          <li><button @click="activeTab = 'eyes'">Eyes</button></li>
-          <li><button @click="activeTab = 'ears'">Ears</button></li>
-          <li><button @click="activeTab = 'clothes'">Clothes</button></li>
+          <li><button @click="activeTab = 'body'" :class="{ active: activeTab === 'body'?true:false }">Body</button></li>
+          <li><button @click="activeTab = 'head'" :class="{ active: activeTab === 'head'?true:false }">Head</button></li>
+          <li><button @click="activeTab = 'face'" :class="{ active: activeTab === 'face'?true:false }">Face</button></li>
+          <li><button @click="activeTab = 'eyes'" :class="{ active: activeTab === 'eyes'?true:false }">Eyes</button></li>
+          <li><button @click="activeTab = 'ears'" :class="{ active: activeTab === 'ears'?true:false }">Ears</button></li>
+          <li><button @click="activeTab = 'clothes'" :class="{ active: activeTab === 'clothes'?true:false }">Clothes</button></li>
         </ul>
       </div>
 
@@ -105,7 +105,7 @@ import AvatarDB from './../assets/avatar_data.json'
 .avatar-builder {
   width: 600px;
   min-height: 600px;
-  border-radius: 50px;
+  border-radius: 37px;
   background: var(--gradient-primary);
   overflow: hidden;
   display: inline-flex;
@@ -147,6 +147,13 @@ import AvatarDB from './../assets/avatar_data.json'
     height: 40px;
     padding: .2rem 1rem;
     border-radius: 999px;
+    cursor: pointer;
+
+    &:active {
+      &:not([disabled]) {
+        transform: scale(.9);
+      }
+    }
 
     &[disabled] {
       opacity: .5;
@@ -167,10 +174,10 @@ import AvatarDB from './../assets/avatar_data.json'
     width: var(--r);
     height: var(--r);
     background-color: var(--color-black);
-    background-image: url('./../assets/logo.svg');
+    background-image: url('./../assets/logo-bg.svg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 40%;
+    background-size: 20%;
     border-radius: 999px;
 
     >div {
@@ -216,14 +223,15 @@ import AvatarDB from './../assets/avatar_data.json'
 
 .footer {
   background-color: var(--color-footer-background);
-  border-radius: 40px;
+  border-top-left-radius: 37px;
+  border-top-right-radius: 37px;
 
   ul {
     display: flex;
   }
 
   &__tabs {
-    padding: .5rem 1rem;
+    padding: 1.5rem 1rem 1rem 1rem;
     border-top-right-radius: inherit;
     border-top-left-radius: inherit;
 
@@ -237,8 +245,6 @@ import AvatarDB from './../assets/avatar_data.json'
 
         button {
           border: none;
-          background: var(--gradient-primary);
-          color: var(--white, #fff);
           width: 100%;
           height: 100%;
           border-radius: 999px;
@@ -250,6 +256,11 @@ import AvatarDB from './../assets/avatar_data.json'
 
           &:active {
             transform: scale(.9);
+          }
+
+          &.active {
+            background: var(--gradient-primary);
+            color: var(--white, #fff);
           }
         }
       }
@@ -321,13 +332,13 @@ export default {
   data() {
     return {
       count: 0,
-      finalAvatar: ({ "body": null, "clothes": null, "eyes": null, "ears": null, "head": null, "grayscale": false }),
+      finalAvatar: ({ body: null, clothes: null, eyes: null, ears: null, head: null, grayscale: false }),
       activeTab: 'body'
     }
   },
   methods: {
     reset() {
-      console.log(this.finalAvatar)
+      this.finalAvatar = { body: null, clothes: null, eyes: null, ears: null, head: null, grayscale: false }
     },
     random() {
       this.finalAvatar = {
@@ -342,7 +353,7 @@ export default {
       console.log(this.finalAvatar)
     },
     grayscale() {
-      this.finalAvatar.grayscale = ! this.finalAvatar.grayscale
+      this.finalAvatar.grayscale = !this.finalAvatar.grayscale
     },
   },
 }
