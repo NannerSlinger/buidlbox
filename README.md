@@ -1,6 +1,10 @@
 # buidlebox-avatar-builder
 
-This template should help get you started developing with Vue 3 in Vite.
+DESC
+
+## Hackathon Link
+
+https://app.buidlbox.io/buidlbox/buidlhacks/challenges/0c14bf2c-1d3a-49cc-af01-2a51052cba53
 
 ## Recommended IDE Setup
 
