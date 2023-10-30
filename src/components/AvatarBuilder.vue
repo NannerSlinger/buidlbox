@@ -17,9 +17,9 @@ import AvatarDB from './../assets/avatar_data.json'
     </header>
 
     <main class="main">
-      <h2>Create your Buidlbox avatar</h2>
+      <h2 class="animate fade">Create your Buidlbox avatar</h2>
 
-      <output :style="[finalAvatar.grayscale === true ? { 'filter': 'grayscale(1)' } : '']">
+      <output :style="[finalAvatar.grayscale === true ? { 'filter': 'grayscale(1)' } : '']" class="animate blur">
         <div :style="{ '--data-url': 'url(./avatar/body/' + finalAvatar.body + ')' }" />
         <div :style="{ '--data-url': 'url(./avatar/clothes/' + finalAvatar.clothes + ')' }" />
         <div :style="{ '--data-url': 'url(./avatar/eyes/' + finalAvatar.eyes + ')' }" />
@@ -56,37 +56,37 @@ import AvatarDB from './../assets/avatar_data.json'
 
       <div class="footer__content">
         <template v-if="activeTab === 'body'">
-          <div v-for="(item, index) in AvatarDB.body" :key="index"
+          <div v-for="(item, index) in AvatarDB.body" :key="index" class="animate pop"
             @click="finalAvatar.body = item; console.log(finalAvatar)"
             :style="{ '--data-url': 'url(./avatar/body/' + item + ')' }" />
         </template>
 
         <template v-if="activeTab === 'head'">
-          <div v-for="(item, index) in AvatarDB.head" :key="index"
+          <div v-for="(item, index) in AvatarDB.head" :key="index" class="animate pop"
             @click="finalAvatar.head = item; console.log(finalAvatar)"
             :style="{ '--data-url': 'url(./avatar/head/' + item + ')' }" />
         </template>
 
         <template v-if="activeTab === 'face'">
-          <div v-for="(item, index) in AvatarDB.face" :key="index"
+          <div v-for="(item, index) in AvatarDB.face" :key="index" class="animate pop"
             @click="finalAvatar.face = item; console.log(finalAvatar)"
             :style="{ '--data-url': 'url(./avatar/face/' + item + ')' }" />
         </template>
 
         <template v-if="activeTab === 'ears'">
-          <div v-for="(item, index) in AvatarDB.ears" :key="index"
+          <div v-for="(item, index) in AvatarDB.ears" :key="index" class="animate pop"
             @click="finalAvatar.ears = item; console.log(finalAvatar)"
             :style="{ '--data-url': 'url(./avatar/ears/' + item + ')' }" />
         </template>
 
         <template v-if="activeTab === 'clothes'">
-          <div v-for="(item, index) in AvatarDB.clothes" :key="index"
+          <div v-for="(item, index) in AvatarDB.clothes" :key="index" class="animate pop"
             @click="finalAvatar.clothes = item; console.log(finalAvatar)"
             :style="{ '--data-url': 'url(./avatar/clothes/' + item + ')' }" />
         </template>
 
         <template v-if="activeTab === 'eyes'">
-          <div v-for="(item, index) in AvatarDB.eyes" :key="index"
+          <div v-for="(item, index) in AvatarDB.eyes" :key="index" class="animate pop"
             @click="finalAvatar.eyes = item; console.log(finalAvatar)"
             :style="{ '--data-url': 'url(./avatar/eyes/' + item + ')' }" />
         </template>
@@ -185,6 +185,7 @@ import AvatarDB from './../assets/avatar_data.json'
     background-position: center;
     background-size: 20%;
     border-radius: 999px;
+    background-clip: border-box;
 
     >div {
       width: 100%;
@@ -267,6 +268,19 @@ import AvatarDB from './../assets/avatar_data.json'
           &.active {
             background: var(--gradient-primary);
             color: var(--white, #fff);
+            background-size: 200% auto;
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textclip 1.5s linear infinite;
+
+            @keyframes textclip {
+              to {
+                background-position: 200% center;
+              }
+            }
+
           }
         }
       }
@@ -279,12 +293,12 @@ import AvatarDB from './../assets/avatar_data.json'
     color: #fff;
     padding: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
     gap: 1rem;
     margin-bottom: 2rem;
 
     div {
-      min-height: 62px;
+      min-height: 42px;
       max-height: 32px;
       background-color: #1B374A;
       background-image: var(--data-url);
@@ -355,7 +369,7 @@ export default {
         head: AvatarDB.head[Math.ceil(Math.random() * (AvatarDB.head.length - 1) + 0)],
         grayscale: this.finalAvatar.grayscale
       }
-
+      document.querySelector('main output').classList.toggle('flip')
       console.log(this.finalAvatar)
     },
     grayscale() {
