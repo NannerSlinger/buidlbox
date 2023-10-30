@@ -1,6 +1,6 @@
 # buidlebox-avatar-builder
 
-DESC
+Fully functional avatar maker module for #buidlHACKS on https://app.buidlbox.io/.
 
 ## Hackathon Link
 
