@@ -3,22 +3,28 @@
   --color-black: #2b2b2b;
   --color-white: #ffffff;
 
-  --color-background: #fff;
+  --color-background: #11232f;
   --color-background-soft: #fafafa;
-  --color-footer-background: #162C3B;
+  --color-footer-background: #162c3b;
 
   --color-border: #dfdfdf;
   --color-border-hover: red;
 
   --color-primary: #16dbbe;
   --color-secondary: #e54de5;
-  --color-tertiary: #ffc800;
-  --gradient-primary: linear-gradient(90deg, #DE51E4 0%, #1ED6BF 100%), var(--White, #FFF);
+  --color-tertiary: #ffc900;
+  --gradient-primary: linear-gradient(90deg, #de51e4 0%, #1ed6bf 100%), var(--White, #fff);
 
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+
+  --surface: #1b374a;
+  --secondary-surface: #0e1a23;
+  --positive: #46ffc8;
+  --tentative: #ffd464;
+  --destructive: #ff4444;
 }
 
 @media (prefers-color-scheme: dark) {

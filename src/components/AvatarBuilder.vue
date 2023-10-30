@@ -1,13 +1,7 @@
 <script setup>
-import { ref } from 'vue'
 import CloseIcon from './icons/IconClose.vue'
 import AvatarDB from './../assets/avatar_data.json'
-const count = ref(0)
-const finalAvatar = ref({ "body": null, "clothes": null, "eyes": null, "ears": null, "head": null })
-const activeTab = ref('body')
-
-// Store in Localstorage
-</script>
+</script >
 
 <template>
   <div class="avatar-builder">
@@ -17,7 +11,7 @@ const activeTab = ref('body')
       </button>
 
       <button class="header__set-btn" @click="console.log(finalAvatar)"
-        :disabled="finalAvatar.body === null || finalAvatar.clothes === null || finalAvatar.eyes === null || finalAvatar.ears === null || finalAvatar.head === null">
+        :disabled="Object.keys(finalAvatar).length === 0 || finalAvatar.body === null || finalAvatar.clothes === null || finalAvatar.eyes === null || finalAvatar.ears === null || finalAvatar.head === null">
         Set avatar
       </button>
     </header>
@@ -25,7 +19,7 @@ const activeTab = ref('body')
     <main class="main">
       <h2>Create your Buidlbox avatar</h2>
 
-      <output>
+      <output :style="[finalAvatar.grayscale === true ? { 'filter': 'grayscale(1)' } : '']">
         <div :style="{ '--data-url': 'url(./src/assets/avatar/body/' + finalAvatar.body + ')' }" />
         <div :style="{ '--data-url': 'url(./src/assets/avatar/clothes/' + finalAvatar.clothes + ')' }" />
         <div :style="{ '--data-url': 'url(./src/assets/avatar/eyes/' + finalAvatar.eyes + ')' }" />
@@ -35,9 +29,9 @@ const activeTab = ref('body')
       </output>
 
       <ul>
-        <li><button @click="finalAvatar.body = null, finalAvatar.clothes = null">reset</button></li>
-        <li><button>random</button></li>
-        <li><button>grayscale</button></li>
+        <li><button @click="random()">Random</button></li>
+        <li><button @click="grayscale()">grayscale</button></li>
+        <li><button @click="reset()">reset</button></li>
       </ul>
     </main>
 
@@ -90,24 +84,6 @@ const activeTab = ref('body')
             @click="finalAvatar.eyes = item; console.log(finalAvatar)"
             :style="{ '--data-url': 'url(./src/assets/avatar/eyes/' + item + ')' }" />
         </template>
-      </div>
-
-      <div class="footer__more">
-        <small>
-          No idea? <br />
-          Try one of these
-        </small>
-
-        <figure>
-          <img src="./../assets/logo.svg" />
-          <img src="./../assets/logo.svg" />
-          <img src="./../assets/logo.svg" />
-          <img src="./../assets/logo.svg" />
-          <img src="./../assets/logo.svg" />
-          <img src="./../assets/logo.svg" />
-        </figure>
-
-        <button>View more</button>
       </div>
 
       <ul class="footer__copyright">
@@ -187,6 +163,15 @@ const activeTab = ref('body')
 
   output {
     position: relative;
+    --r: 182px;
+    width: var(--r);
+    height: var(--r);
+    background-color: var(--color-black);
+    background-image: url('./../assets/logo.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40%;
+    border-radius: 999px;
 
     >div {
       width: 100%;
@@ -196,6 +181,8 @@ const activeTab = ref('body')
       border-radius: inherit;
       background-image: var(--data-url);
       background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
     }
   }
 
@@ -204,10 +191,13 @@ const activeTab = ref('body')
     align-items: center;
     justify-content: space-around;
     column-gap: 1rem;
+    margin-bottom: 1rem;
 
     li {
       button {
-        background-color: var(--color-border);
+        background-color: var(--color-background);
+        color: #eee;
+        padding: .2rem .5rem;
         border-radius: 999px;
         border: none;
         text-transform: capitalize;
@@ -222,16 +212,6 @@ const activeTab = ref('body')
   h2 {
     color: var(--color-white);
   }
-
-  output {
-    position: relative;
-    --r: 32px;
-    width: var(--r);
-    height: var(--r);
-    background-color: var(--color-black);
-    border-radius: 999px;
-    zoom: 6;
-  }
 }
 
 .footer {
@@ -243,7 +223,37 @@ const activeTab = ref('body')
   }
 
   &__tabs {
-    padding: 1rem 1rem;
+    padding: .5rem 1rem;
+    border-top-right-radius: inherit;
+    border-top-left-radius: inherit;
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      row-gap: 1rem;
+
+      li {
+        width: 100%;
+
+        button {
+          border: none;
+          background: var(--gradient-primary);
+          color: var(--white, #fff);
+          width: 100%;
+          height: 100%;
+          border-radius: 999px;
+          transition: all .1s ease-in-out;
+
+          &:hover {
+            opacity: .8;
+          }
+
+          &:active {
+            transform: scale(.9);
+          }
+        }
+      }
+    }
   }
 
   &__content {
@@ -252,15 +262,17 @@ const activeTab = ref('body')
     color: #fff;
     padding: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    row-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
     margin-bottom: 2rem;
 
     div {
-      width: 32px;
-      height: 32px;
+      min-height: 62px;
+      max-height: 32px;
       background-color: #1B374A;
       background-image: var(--data-url);
+      background-repeat: no-repeat;
+      background-size: contain;
       background-position: center;
       border-radius: 6px;
       zoom: 2;
@@ -290,7 +302,8 @@ const activeTab = ref('body')
   }
 
   &__copyright {
-    color: #ACACAC
+    color: #ACACAC;
+    padding-bottom: .65rem;
   }
 }
 
@@ -302,3 +315,35 @@ const activeTab = ref('body')
   }
 }
 </style>
+
+<script>
+export default {
+  data() {
+    return {
+      count: 0,
+      finalAvatar: ({ "body": null, "clothes": null, "eyes": null, "ears": null, "head": null, "grayscale": false }),
+      activeTab: 'body'
+    }
+  },
+  methods: {
+    reset() {
+      console.log(this.finalAvatar)
+    },
+    random() {
+      this.finalAvatar = {
+        body: AvatarDB.body[Math.ceil(Math.random() * (AvatarDB.body.length - 1) + 0)],
+        clothes: AvatarDB.clothes[Math.ceil(Math.random() * (AvatarDB.clothes.length - 1) + 0)],
+        eyes: AvatarDB.eyes[Math.ceil(Math.random() * (AvatarDB.eyes.length - 1) + 0)],
+        ears: AvatarDB.ears[Math.ceil(Math.random() * (AvatarDB.ears.length - 1) + 0)],
+        head: AvatarDB.head[Math.ceil(Math.random() * (AvatarDB.head.length - 1) + 0)],
+        grayscale: this.finalAvatar.grayscale
+      }
+
+      console.log(this.finalAvatar)
+    },
+    grayscale() {
+      this.finalAvatar.grayscale = ! this.finalAvatar.grayscale
+    },
+  },
+}
+</script>
