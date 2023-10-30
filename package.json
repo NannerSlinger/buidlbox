@@ -2,7 +2,7 @@
   "name": "buidlebox-avatar-builder",
   "version": "0.0.0",
   "private": false,
-  "homepage": "https://github.com/web3senior/buidlbox",
+  "homepage": "https://web3senior.github.io/buidlbox/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
