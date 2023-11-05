@@ -10,10 +10,13 @@ import AvatarDB from './../assets/avatar_data.json'
         <CloseIcon />
       </button>
 
-      <button class="header__set-btn" @click="console.log(finalAvatar)"
-        :disabled="Object.keys(finalAvatar).length === 0 || finalAvatar.body === null || finalAvatar.clothes === null || finalAvatar.eyes === null || finalAvatar.ears === null || finalAvatar.head === null">
-        Set avatar
-      </button>
+      <div>
+        <button class="header__set-btn" @click="console.log(finalAvatar)"
+          :disabled="Object.keys(finalAvatar).length === 0 || finalAvatar.body === null || finalAvatar.clothes === null || finalAvatar.eyes === null || finalAvatar.ears === null || finalAvatar.head === null">
+          Set avatar
+        </button>
+      </div>
+
     </header>
 
     <main class="main">
@@ -57,7 +60,7 @@ import AvatarDB from './../assets/avatar_data.json'
       <div class="footer__content">
         <template v-if="activeTab === 'body'">
           <div v-for="(item, index) in AvatarDB.body" :key="index" class="animate pop"
-            @click="finalAvatar.body = item; console.log(finalAvatar)"
+            @click="finalAvatar.body = item; console.log(finalAvatar); $event.target.classList.toggle(`active`)"
             :style="{ '--data-url': 'url(./avatar/body/' + item + ')' }" />
         </template>
 
